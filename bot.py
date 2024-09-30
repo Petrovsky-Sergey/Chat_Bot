@@ -23,13 +23,14 @@ async def hello(update, context):
 
 async def hello_button(update, context):
     query = update.callback_query.data  # код кнопки
-    await update.callback_query.answer()  # помечаем что обработали нажатие на кнопку
-    await send_text(update, context, "Вы нажали на кнопку " + query)
+    if query == 'start':
+        await send_text(update, context, "*Процесс запущен*")
+    else:
+        await send_text(update, context, "*Процесс остановлен*")
 
 
 app = ApplicationBuilder().token("7242301719:AAHoMQNtHgdaJ5BRImu6Ytbkfi2hHa_vIT0").build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, hello))  # отключаем команды
 app.add_handler(CallbackQueryHandler(hello_button))
-
 app.run_polling()
