@@ -22,8 +22,8 @@ async def hello(update, context):
 
 
 async def hello_button(update, context):
-    query = update.callback_query.data   #код кнопки
-    await update.callback_query.answer() #помечаем что обработали нажатие на кнопку
+    query = update.callback_query.data  # код кнопки
+    await update.callback_query.answer()  # помечаем что обработали нажатие на кнопку
     await send_text(update, context, "Вы нажали на кнопку " + query)
 
 
