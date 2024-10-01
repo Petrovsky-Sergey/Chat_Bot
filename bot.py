@@ -48,8 +48,9 @@ async def date(update, context):
 
 async def date_dialog(update, context):
     text = update.message.text
+    my_message = await send_text(update, context, 'набирает текст...')
     answer = await chatgpt.add_message(text)
-    await send_text(update, context, answer)
+    await my_message.edit_text(answer)
 
 
 async def date_button(update, context):
